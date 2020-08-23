@@ -1,0 +1,65 @@
+<%= render(WeatherdrobeWeb.SharedView, "_header.html", conn: @conn) %>
+
+<h2><%= Darksky.getDate(0) %></h2>
+<div class="flex-container">
+  <section>
+    <div>
+      <h3>Calendar</h3>
+      <ul>
+      <%= for activity <- Darksky.getCal do %>
+        <li><%= activity %></li>
+      <% end %>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <div>
+      <h3>Weather</h3>
+      <ul>
+        <li><%= Darksky.todaysWeatherSummary %></li>
+        <img src="<%= Routes.static_path(@conn, Darksky.todaysWeatherIcon) %>" alt="Phoenix Framework Logo"/>
+        <li><%= Darksky.todaysTemperature %></li>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <div>
+      <h3>Clothes</h3>
+      <%= for activity <- Darksky.getCal() do %>
+        <h4><%= activity %></h2>
+        <ul>
+          <%= for clothes <- Darksky.getActivityClothes(activity) do %>
+            <li><%= clothes %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </section>
+  <section>
+    <div>
+      <h3>Clothes</h3>
+        <h4>For Today's Weather</h2>
+        <ul>
+          <%= for clothes <- Darksky.getTodaysClothes() do %>
+            <li><%= clothes %></li>
+          <% end %>
+        </ul>
+    </div>
+  </section>
+</div>
+
+<h2>5 Day Forcast</h2>
+<div class="flex-container">
+  <%= for index <- [1,2,3,4,5] do %>
+    <section>
+      <div>
+        <h3><%= Darksky.getDate(index) %></h3>
+        <ul>
+          <li><%= Darksky.futureWeatherSummary(index) %></li>
+        <img src="<%= Routes.static_path(@conn, Darksky.futureWeatherIcon(index)) %>" alt="Phoenix Framework Logo"/>
+          <li><%= Darksky.futureHighTemperature(index) %> / <%= Darksky.futureLowTemperature(index) %></li>
+        </ul>
+      </div>
+    </section>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+<%= render(WeatherdrobeWeb.SharedView, "_header.html", conn: @conn) %>
+
+<h1>Show Calendar</h1>
+
+<ul>
+  <li>
+    <strong>User ID:</strong>
+    <%= @calendar.user_id %>
+  </li>
+  
+  <li>
+    <strong>Date:</strong>
+    <%= @calendar.date %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @calendar.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.calendar_path(@conn, :edit, @calendar) %></span>
+<span><%= link "Back", to: Routes.calendar_path(@conn, :index) %></span>

@@ -1,0 +1,67 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :outfit_type %>
+    <%= select(f, :outfit_type, Enum.map(["footwear", "gloves", "pants", "shirts", "hats", "sunglasses", "jackets", "ties", "umbrella", "scarf"], fn x -> x end)) %>
+
+    <%= error_tag f, :outfit_type %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+  </div>
+
+
+  <div class="form-group">
+    <%= label f, :rain? %>
+    <%= checkbox f, :rain? %>
+    <%= error_tag f, :rain? %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :snow? %>
+    <%= checkbox f, :snow? %>
+    <%= error_tag f, :snow? %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :wind? %>
+    <%= checkbox f, :wind? %>
+    <%= error_tag f, :wind? %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :sun? %>
+    <%= checkbox f, :sun? %>
+    <%= error_tag f, :sun? %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :temp_low %>
+    <%= number_input f, :temp_low %>
+    <%= error_tag f, :temp_low %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :temp_high %>
+    <%= number_input f, :temp_high %>
+    <%= error_tag f, :temp_high %>
+  </div>
+  
+  <div class="form-group hidden">
+    <%= label f, :user_id %>
+    <%= text_input f, :user_id, value: @current_user.id%>
+    <%= error_tag f, :user_id %>
+  </div>
+  
+  <div class="form-button">
+    <%= submit "Save" %>
+  </div>
+<% end %>

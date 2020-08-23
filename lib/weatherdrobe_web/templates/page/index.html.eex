@@ -1,0 +1,23 @@
+<%= render(WeatherdrobeWeb.SharedView, "_header.html", conn: @conn) %>
+
+<div class="flex-container">
+  <section>
+    <h1 class="test-class"><%= gettext "Welcome to %{name}!", name: "Weatherdrobe" %></h1>
+  </section>
+</div>
+
+<div class="flex-container">
+    <%= if @current_user do %>
+      <p class="my-3">
+      User: <%= @current_user.email %>
+      <%= link("Logout", to: Routes.session_path(@conn, :delete, @current_user.id), method: :delete) %>
+      </p>
+    <% else %>
+      <%= form_for @conn, Routes.session_path(@conn, :create), [class: "form-inline"], fn f -> %>
+        <h2>Login</h2>
+        <p><%= text_input(f, :email, placeholder: "abc@husky.neu.edu") %></p>
+        <p><%= password_input(f, :password, placeholder: "******") %></p>
+        <p><%= submit "Login" %></p>
+      <% end %>
+    <% end %>
+</div>
