@@ -12,3 +12,7 @@ In order to re-run mix phx.server onyour local,
 
 Run 'sudo lsof -i :4000' to find the PID for the port 4000,
 Run 'sudo kill -9 PID' to kill the PID that's running
+
+Feb 3rd
+Spent quite a time to fix deploy.sh on prod, it's pretty time consuming, I realize the importance of the documentation for the projects. I kept getting the node-sass is not found error, updated node-sass and now it says it doesn't supoort 5.0.0 or up. For some reason, node-sass installation for 4.14.1 keep getting stuck.
+Now I'm thinking maybe it's not worth the hustle and just work on dev to fixbefore even thinking about deployment..
